@@ -41,6 +41,14 @@ YOU SAY:                          APPFORGE DELIVERS:
 
 ---
 
+## 🗺️ Pipeline at a Glance
+
+<p align="center">
+  <img src="docs/pipeline-flowchart-en.svg" alt="AppForge Pipeline" width="100%">
+</p>
+
+---
+
 ## 🎯 Why AppForge?
 
 | Instead of... | AppForge... |
