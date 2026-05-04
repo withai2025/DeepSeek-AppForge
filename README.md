@@ -58,7 +58,7 @@ AppForge is built entirely on the **DeepSeek V4 model family**, delivering unpar
 
 ### Why DeepSeek?
 
-| Capability | DeepSeek V4 Pro | Claude Opus 4 | Advantage |
+| Capability | DeepSeek V4 Pro | Claude Opus 4.6 | Advantage |
 |-----------|----------------|---------------|-----------|
 | Context window | **1,000,000 tokens** | 200,000 tokens | 5x larger — load all 6 planning docs in one prompt |
 | Input price (per 1M tokens) | **$1.74** | $15.00 | 8.6x cheaper |
