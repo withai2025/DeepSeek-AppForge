@@ -35,7 +35,18 @@ class BaseAgent:
         if self._client is None:
             if not self._api_key:
                 raise ValueError(
-                    "DeepSeek API Key 未设置。请设置环境变量 DEEPSEEK_API_KEY 或传入 api_key 参数"
+                    """DeepSeek API Key not found.
+
+To fix this:
+  1. Copy the example env file: cp .env.example .env
+  2. Add your key to .env: DEEPSEEK_API_KEY=sk-your-key-here
+  3. Or export it: export DEEPSEEK_API_KEY=sk-your-key-here
+
+See .env.example for reference:
+  https://github.com/withAIx/DeepSeek-AppForge/blob/main/project-orchestrator/.env.example
+
+Get a DeepSeek API key at:
+  https://platform.deepseek.com/api_keys"""
                 )
             self._client = OpenAI(
                 api_key=self._api_key,

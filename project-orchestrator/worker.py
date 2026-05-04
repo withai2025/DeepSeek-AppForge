@@ -15,7 +15,18 @@ def _get_client():
     if _client is None:
         if not DEEPSEEK_API_KEY:
             raise ValueError(
-                "DEEPSEEK_API_KEY 未设置。请在 .env 文件中设置 DEEPSEEK_API_KEY"
+                """DeepSeek API Key not found.
+
+To fix this:
+  1. Copy the example env file: cp .env.example .env
+  2. Add your key to .env: DEEPSEEK_API_KEY=sk-your-key-here
+  3. Or export it: export DEEPSEEK_API_KEY=sk-your-key-here
+
+See .env.example for reference:
+  https://github.com/withAIx/DeepSeek-AppForge/blob/main/project-orchestrator/.env.example
+
+Get a DeepSeek API key at:
+  https://platform.deepseek.com/api_keys"""
             )
         _client = OpenAI(
             api_key=DEEPSEEK_API_KEY,
