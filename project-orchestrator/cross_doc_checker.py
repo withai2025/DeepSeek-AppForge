@@ -1,11 +1,11 @@
 """
-跨文档一致性检查器
+Cross-Document Consistency Checker
 
-利用 DeepSeek V4 100 万 token 上下文窗口，将 Phase 0 全部 6 份文档
-一次性加载到单个 API 调用中进行交叉审查，发现字段名不一致、逻辑矛盾、
-接口与 Schema 不匹配等问题。
+Leverages the DeepSeek V4 1M token context window to load all 6 Phase 0
+documents into a single API call for cross-review. Detects field name
+inconsistencies, logical contradictions, API-Schema mismatches, and more.
 
-这是 Claude 200K 上下文窗口无法实现的功能。
+This is a capability impossible with 200K context windows.
 """
 
 from pathlib import Path
@@ -18,71 +18,71 @@ from config import DEEPSEEK_API_KEY
 
 console = Console()
 
-CHECKER_SYSTEM_PROMPT = """# 角色定义
+CHECKER_SYSTEM_PROMPT = """# Role Definition
 
-你是一位资深 QA 审查专家，专精跨文档一致性检查。
+You are a senior QA review expert specializing in cross-document consistency checking.
 
-# 任务
+# Task
 
-你将收到一整套 APP 开发文档（PRD、技术架构、编码规范、数据库 Schema、API 契约、任务书），请逐项审查以下维度：
+You will receive a complete set of APP development documents (PRD, Tech Architecture, Coding Standards, DB Schema, API Contract, Task Book). Review each of the following dimensions:
 
-## 审查维度
+## Review Dimensions
 
-1. **字段名一致性**：同一实体在不同文档中的字段名是否一致？
-   - 例如：PRD 中的"用户昵称"在 Schema 中是 `nickname` 还是 `display_name`？在 API 中是 `nickName` 还是 `nickname`？
+1. **Field Name Consistency**: Is the same entity consistently named across documents?
+   - Example: Is "user nickname" in the PRD called `nickname` or `display_name` in the Schema? `nickName` or `nickname` in the API?
 
-2. **接口与 Schema 匹配**：API 契约中定义的请求/响应字段是否与 DB Schema 中的列一一对应？
-   - 检查每个 endpoint 的 request body / response body 字段在数据库表中是否有对应列
+2. **API-Schema Alignment**: Do request/response fields defined in the API Contract map to corresponding columns in the DB Schema?
+   - Check that every endpoint's request body / response body field has a matching column in the database tables
 
-3. **功能完整性**：PRD 中每个 P0 功能是否有对应的 API 接口？每个页面是否有对应的前端任务？
+3. **Feature Completeness**: Does every P0 feature in the PRD have a corresponding API endpoint? Does every page have a corresponding frontend task?
 
-4. **编码规范一致性**：Schema 和 API 中的命名是否符合编码规范的命名约定？
-   - 例如：规范要求 snake_case，Schema 中是否出现了 camelCase？
+4. **Coding Standards Consistency**: Do the Schema and API naming conventions match the Coding Standards?
+   - Example: Standards mandate snake_case — does camelCase appear in the Schema?
 
-5. **数据类型一致性**：同一字段在不同文档中的类型定义是否一致？
-   - 例如：PRD 说"年龄是整数"，Schema 中是 INTEGER，API 中是 string？
+5. **Data Type Consistency**: Is the same field defined with consistent types across documents?
+   - Example: PRD says "age is an integer", Schema has INTEGER, but API has string?
 
-## 输出格式
+## Output Format
 
-请按照以下结构输出审查报告：
+Structure your review report as follows:
 
-### 🔴 必须修复（阻塞问题）
-- 具体问题描述
-- 涉及文档及位置
-- 修复建议
+### 🔴 Must Fix (Blocking Issues)
+- Specific problem description
+- Documents and sections involved
+- Fix recommendation
 
-### 🟡 建议修复（潜在风险）
-- 具体问题描述
-- 涉及文档及位置
-- 修复建议
+### 🟡 Should Fix (Potential Risks)
+- Specific problem description
+- Documents and sections involved
+- Fix recommendation
 
-### 🟢 可忽略（注释说明）
-- 观察到的差异
-- 为什么可忽略
+### 🟢 Can Ignore (Noted)
+- Observed difference
+- Why it can be ignored
 
-### 📊 评分
-- 字段一致性：X/10
-- 接口-Schema 匹配度：X/10
-- 功能完整性：X/10
-- 编码规范一致性：X/10
-- **综合评分：X/10**
+### 📊 Scoring
+- Field Consistency: X/10
+- API-Schema Alignment: X/10
+- Feature Completeness: X/10
+- Coding Standards Consistency: X/10
+- **Overall Score: X/10**
 
-## 关键原则
-- 严格对照文档原文，不凭记忆推测
-- 标注具体文档名和章节位置
-- 修复建议必须具体到字段名或代码行
+## Key Principles
+- Verify against document source text; do not rely on memory or assumptions
+- Cite specific document names and section locations
+- Fix recommendations must be specific down to field names or code lines
 """
 
 
 def load_all_docs(docs_dir: str = "docs") -> dict[str, str]:
     """加载 Phase 0 全部产出文档"""
     doc_files = {
-        "PRD.md": "产品需求文档",
-        "TECH_ARCHITECTURE.md": "技术架构方案",
-        "CODING_STANDARDS.md": "编码规范",
-        "DB_SCHEMA.md": "数据库 Schema",
-        "API_CONTRACT.md": "API 契约",
-        "TASK_BOOK.md": "任务书",
+        "PRD.md": "Product Requirements Document",
+        "TECH_ARCHITECTURE.md": "Technical Architecture",
+        "CODING_STANDARDS.md": "Coding Standards",
+        "DB_SCHEMA.md": "Database Schema",
+        "API_CONTRACT.md": "API Contract",
+        "TASK_BOOK.md": "Task Book",
     }
 
     docs = {}
@@ -95,7 +95,7 @@ def load_all_docs(docs_dir: str = "docs") -> dict[str, str]:
             missing.append(filename)
 
     if missing:
-        console.print(f"[yellow]⚠️  以下文档尚未生成，将跳过：{', '.join(missing)}[/yellow]")
+        console.print(f"[yellow]⚠️  The following documents are not yet generated, skipping: {', '.join(missing)}[/yellow]")
 
     return docs
 
@@ -105,7 +105,7 @@ def run_cross_doc_check(docs_dir: str = "docs") -> dict:
     docs = load_all_docs(docs_dir)
 
     if len(docs) < 3:
-        console.print("[yellow]⚠️  文档不足 3 份，跳过跨文档审查[/yellow]")
+        console.print("[yellow]⚠️  Fewer than 3 documents available, skipping cross-document review[/yellow]")
         return {"error": "insufficient_docs", "score": None}
 
     # 构建审查消息：所有文档按顺序拼接
@@ -113,46 +113,46 @@ def run_cross_doc_check(docs_dir: str = "docs") -> dict:
     total_chars = 0
     for filename, content in docs.items():
         label = {
-            "PRD.md": "产品需求文档",
-            "TECH_ARCHITECTURE.md": "技术架构方案",
-            "CODING_STANDARDS.md": "编码规范",
-            "DB_SCHEMA.md": "数据库 Schema",
-            "API_CONTRACT.md": "API 契约",
-            "TASK_BOOK.md": "任务书",
+            "PRD.md": "Product Requirements Document",
+            "TECH_ARCHITECTURE.md": "Technical Architecture",
+            "CODING_STANDARDS.md": "Coding Standards",
+            "DB_SCHEMA.md": "Database Schema",
+            "API_CONTRACT.md": "API Contract",
+            "TASK_BOOK.md": "Task Book",
         }.get(filename, filename)
         doc_sections.append(f"## {label} ({filename})\n\n{content}")
         total_chars += len(content)
 
     all_docs_text = "\n\n---\n\n".join(doc_sections)
-    estimated_tokens = total_chars // 2  # 粗略估计：中文约 2 char/token
+    estimated_tokens = total_chars // 2  # rough estimate: ~2 chars per token for mixed content
 
     console.print(
         Panel(
-            f"[bold blue]🔍 跨文档一致性检查[/bold blue]\n\n"
-            f"加载文档：{len(docs)} / 6 份\n"
-            f"总字符数：{total_chars:,}\n"
-            f"估算 Token：~{estimated_tokens:,} / 1,000,000\n"
-            f"利用率：{estimated_tokens / 10000:.1f}%",
+            f"[bold blue]🔍 Cross-Document Consistency Check[/bold blue]\n\n"
+            f"Documents loaded: {len(docs)} / 6\n"
+            f"Total characters: {total_chars:,}\n"
+            f"Estimated tokens: ~{estimated_tokens:,} / 1,000,000\n"
+            f"Utilization: {estimated_tokens / 10000:.1f}%",
             border_style="blue",
         )
     )
 
     if estimated_tokens > 900_000:
-        console.print("[yellow]⚠️  文档总大小接近上下文上限，部分文档可能被截断[/yellow]")
+        console.print("[yellow]⚠️  Total document size near context limit; some documents may be truncated[/yellow]")
 
     client = OpenAI(
         api_key=DEEPSEEK_API_KEY,
         base_url="https://api.deepseek.com",
     )
 
-    console.print("[dim]🔄 正在审查（预计 1-3 分钟）...[/dim]")
+    console.print("[dim]🔄 Reviewing (estimated 1-3 minutes)...[/dim]")
 
     response = client.chat.completions.create(
         model="deepseek-v4-pro",
         max_tokens=8192,
         messages=[
             {"role": "system", "content": CHECKER_SYSTEM_PROMPT},
-            {"role": "user", "content": f"## 待审查文档集\n\n{all_docs_text}\n\n请逐项审查上述全部文档的跨文档一致性。"},
+            {"role": "user", "content": f"## Document Set for Review\n\n{all_docs_text}\n\nPlease review all documents above for cross-document consistency across every dimension."},
         ],
         extra_body={"thinking": {"type": "enabled"}},
     )
@@ -162,27 +162,27 @@ def run_cross_doc_check(docs_dir: str = "docs") -> dict:
     # 保存审查报告
     report_path = Path(docs_dir) / "CROSS_DOC_REVIEW.md"
     report_path.parent.mkdir(parents=True, exist_ok=True)
-    full_report = f"# 跨文档一致性审查报告\n\n> 由 DeepSeek V4 Pro (thinking_max) 生成\n> 利用 100 万 token 上下文窗口一次性审查全部 {len(docs)} 份文档\n\n---\n\n{report}"
+    full_report = f"# Cross-Document Consistency Review Report\n\n> Generated by DeepSeek V4 Pro (thinking_max)\n> Single-pass review of all {len(docs)} documents using the 1M token context window\n\n---\n\n{report}"
     report_path.write_text(full_report, encoding="utf-8")
-    console.print(f"[green]✅ 审查报告已保存：{report_path}[/green]")
+    console.print(f"[green]✅ Review report saved: {report_path}[/green]")
 
     return {"report": report, "path": str(report_path)}
 
 
 def print_report_summary(report: str):
-    """提取并展示审查摘要"""
-    table = Table(title="📊 跨文档一致性评分")
-    table.add_column("维度", style="cyan")
-    table.add_column("评分", style="bold")
+    """Extract and display review summary"""
+    table = Table(title="📊 Cross-Document Consistency Scores")
+    table.add_column("Dimension", style="cyan")
+    table.add_column("Score", style="bold")
 
-    # 从报告中提取评分
+    # Extract scores from report text
     import re
     dimensions = [
-        ("字段一致性", r"字段一致性[：:]?\s*(\d+)/10"),
-        ("接口-Schema 匹配度", r"接口[-\s]*Schema\s*匹配度[：:]?\s*(\d+)/10"),
-        ("功能完整性", r"功能完整性[：:]?\s*(\d+)/10"),
-        ("编码规范一致性", r"编码规范一致性[：:]?\s*(\d+)/10"),
-        ("综合评分", r"综合评分[：:]?\s*(\d+)/10"),
+        ("Field Consistency", r"Field Consistency[：:]?\s*(\d+)/10"),
+        ("API-Schema Alignment", r"API[- ]?Schema\s*Alignment[：:]?\s*(\d+)/10"),
+        ("Feature Completeness", r"Feature\s*Completeness[：:]?\s*(\d+)/10"),
+        ("Coding Standards", r"Coding\s*Standards\s*Consistency[：:]?\s*(\d+)/10"),
+        ("Overall Score", r"Overall\s*Score[：:]?\s*(\d+)/10"),
     ]
 
     for name, pattern in dimensions:

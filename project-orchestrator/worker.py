@@ -15,7 +15,7 @@ def _get_client():
     if _client is None:
         if not DEEPSEEK_API_KEY:
             raise ValueError(
-                "DEEPSEEK_API_KEY 未设置。请在 .env 文件中设置 DEEPSEEK_API_KEY"
+                "DEEPSEEK_API_KEY not set. Please set DEEPSEEK_API_KEY in .env file"
             )
         _client = OpenAI(
             api_key=DEEPSEEK_API_KEY,
@@ -29,29 +29,29 @@ def load_agent_prompt(agent_name: str) -> str:
     config = AGENT_REGISTRY[agent_name]
     prompt_path = Path(config["prompt_file"])
     if not prompt_path.exists():
-        raise FileNotFoundError(f"Agent 提示词文件不存在: {prompt_path}")
+        raise FileNotFoundError(f"Agent prompt file not found: {prompt_path}")
     return prompt_path.read_text(encoding="utf-8")
 
 
 def load_context_docs(doc_paths: list[str]) -> str:
-    """加载上下文文档，合并为字符串
+    """Load context documents and merge into a single string.
 
-    文档按固定顺序排列（system prompt → 前置文档 → 任务描述），
-    以便 DeepSeek 自动前缀缓存在多个 Agent 之间共享文档前缀。
+    Documents are ordered consistently (system prompt → prerequisite docs → task description)
+    so that DeepSeek auto prefix caching shares document prefixes across agents.
     """
     parts = []
     for path in doc_paths:
         p = Path(path)
         if p.exists():
             content = p.read_text(encoding="utf-8")
-            parts.append(f"\n\n---\n# 文档：{path}\n\n{content}")
+            parts.append(f"\n\n---\n# Document: {path}\n\n{content}")
         else:
-            parts.append(f"\n\n---\n# 文档：{path}\n\n[文件不存在，请先完成前置任务]")
+            parts.append(f"\n\n---\n# Document: {path}\n\n[File does not exist — complete prerequisite task first]")
     return "".join(parts)
 
 
 def _build_extra_body(config: dict) -> dict:
-    """根据 Agent 配置构建 thinking mode extra_body"""
+    """Build thinking mode extra_body from agent config"""
     thinking_mode = config.get("thinking_mode")
     if thinking_mode:
         return {"thinking": {"type": "enabled"}}
@@ -73,18 +73,18 @@ def run_worker(
     if extra_context:
         context += f"\n\n---\n# 额外上下文\n\n{extra_context}"
 
-    user_message = f"""## 任务要求
+    user_message = f"""## Task Requirements
 {task_description}
 
-## 可用文档上下文
-{context if context else "（无前置文档）"}
+## Available Document Context
+{context if context else "(No prerequisite documents)"}
 """
 
     thinking_label = f" + {config['thinking_mode']}" if config.get("thinking_mode") else ""
     console.print(
         Panel(
-            f"[bold cyan]🤖 {config['display_name']} 启动中...[/bold cyan]\n"
-            f"模型：{config['model']}{thinking_label}",
+            f"[bold cyan]🤖 {config['display_name']} starting...[/bold cyan]\n"
+            f"Model: {config['model']}{thinking_label}",
             border_style="cyan",
         )
     )
@@ -126,7 +126,7 @@ def run_worker(
 
 
 def save_agent_output(agent_name: str, content: str) -> str | None:
-    """将 Agent 输出保存到对应文档路径，返回保存路径"""
+    """Save agent output to output document path, return saved path"""
     config = AGENT_REGISTRY[agent_name]
     output_path = config.get("output_doc")
     if not output_path:
@@ -135,5 +135,5 @@ def save_agent_output(agent_name: str, content: str) -> str | None:
     p = Path(output_path)
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(content, encoding="utf-8")
-    console.print(f"[green]✅ 文档已保存：{output_path}[/green]")
+    console.print(f"[green]✅ Document saved: {output_path}[/green]")
     return output_path

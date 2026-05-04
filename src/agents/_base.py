@@ -35,7 +35,7 @@ class BaseAgent:
         if self._client is None:
             if not self._api_key:
                 raise ValueError(
-                    "DeepSeek API Key 未设置。请设置环境变量 DEEPSEEK_API_KEY 或传入 api_key 参数"
+                    "DeepSeek API Key not set. Set the DEEPSEEK_API_KEY environment variable or pass an api_key parameter"
                 )
             self._client = OpenAI(
                 api_key=self._api_key,
