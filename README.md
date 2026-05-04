@@ -8,12 +8,14 @@
   <b>English</b> · <a href="README_CN.md">中文</a>
 </p>
 
+> 💡 **Looking for the Claude (Anthropic) version?** → [AppForge](https://github.com/withAIx/AppForge)
+
 <p align="center">
-  <a href="https://github.com/withai2025/DeepSeek-AppForge/stargazers"><img src="https://img.shields.io/github/stars/withai2025/DeepSeek-AppForge?style=social" alt="GitHub stars"></a>
-  <a href="https://github.com/withai2025/DeepSeek-AppForge/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  <a href="https://github.com/withAIx/DeepSeek-AppForge/stargazers"><img src="https://img.shields.io/github/stars/withAIx/DeepSeek-AppForge?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/withAIx/DeepSeek-AppForge/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11+-blue.svg" alt="Python 3.11+"></a>
   <a href="https://github.com/openai/openai-python"><img src="https://img.shields.io/badge/OpenAI%20SDK-1.0+-green.svg" alt="OpenAI SDK (DeepSeek compatible)"></a>
-  <a href="https://github.com/withai2025/DeepSeek-AppForge/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+  <a href="https://github.com/withAIx/DeepSeek-AppForge/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
 </p>
 
 ---
@@ -381,7 +383,7 @@ User: "I want to build a running tracker app..."
 ### The Full Pipeline (Recommended)
 
 ```bash
-git clone https://github.com/withai2025/DeepSeek-AppForge.git
+git clone https://github.com/withAIx/DeepSeek-AppForge.git
 cd AppForge/project-orchestrator
 
 pip install -r requirements.txt
@@ -402,7 +404,7 @@ The Orchestrator fires up and dispatches:
 
 If GitHub is slow, use a mirror:
 ```bash
-git clone https://ghproxy.com/https://github.com/withai2025/DeepSeek-AppForge.git
+git clone https://ghproxy.com/https://github.com/withAIx/DeepSeek-AppForge.git
 ```
 
 DeepSeek API requires a proxy or API forwarding service when accessed from mainland China. Set your proxy before running:

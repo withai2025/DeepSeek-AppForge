@@ -5,16 +5,18 @@
 > 一句话输入 → 完整 APP 输出。零人工编码。
 
 <p align="center">
-  <a href="https://github.com/withai2025/DeepSeek-AppForge/stargazers"><img src="https://img.shields.io/github/stars/withai2025/DeepSeek-AppForge?style=social" alt="GitHub stars"></a>
-  <a href="https://github.com/withai2025/DeepSeek-AppForge/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  <a href="https://github.com/withAIx/DeepSeek-AppForge/stargazers"><img src="https://img.shields.io/github/stars/withAIx/DeepSeek-AppForge?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/withAIx/DeepSeek-AppForge/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11+-blue.svg" alt="Python 3.11+"></a>
   <a href="https://github.com/openai/openai-python"><img src="https://img.shields.io/badge/OpenAI%20SDK-1.0+-green.svg" alt="OpenAI SDK (DeepSeek compatible)"></a>
-  <a href="https://github.com/withai2025/DeepSeek-AppForge/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+  <a href="https://github.com/withAIx/DeepSeek-AppForge/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
 </p>
 
 <p align="center">
   <a href="README.md">English</a> · <b>中文</b>
 </p>
+
+> 💡 **寻找 Claude（Anthropic）版本？** → [AppForge](https://github.com/withAIx/AppForge)
 
 ---
 
@@ -383,7 +385,7 @@ Orchestrator 通过 DeepSeek **Function Calling** 实现全自动调度决策，
 ### 完整流水线（推荐）
 
 ```bash
-git clone https://github.com/withai2025/DeepSeek-AppForge.git
+git clone https://github.com/withAIx/DeepSeek-AppForge.git
 cd AppForge/project-orchestrator
 
 pip install -r requirements.txt
@@ -404,7 +406,7 @@ Orchestrator 自动依次调度：
 
 GitHub 克隆慢可使用镜像：
 ```bash
-git clone https://ghproxy.com/https://github.com/withai2025/DeepSeek-AppForge.git
+git clone https://ghproxy.com/https://github.com/withAIx/DeepSeek-AppForge.git
 ```
 
 DeepSeek API 在国内需要代理访问，运行前设置：

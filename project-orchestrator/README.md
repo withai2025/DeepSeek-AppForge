@@ -146,7 +146,7 @@ TASK_BOOK.md
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/withai2025/agents.git
+git clone https://github.com/withAIx/agents.git
 cd agents/project-orchestrator
 ```
 
@@ -364,7 +364,7 @@ python main.py
 
 ## 🔗 与 agents 库的关系
 
-本系统是 [agents](https://github.com/withai2025/agents) Python 库的配套编排系统：
+本系统是 [agents](https://github.com/withAIx/agents) Python 库的配套编排系统：
 
 | 组件 | 用途 |
 |------|------|
