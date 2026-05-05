@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import sys
 from dataclasses import dataclass, field
 from typing import Iterator
 
@@ -8,6 +9,8 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
+
+LANG = os.environ.get("APPFORGE_LANG", "en")  # "en" = English (default), "zh" = Chinese
 
 
 @dataclass
@@ -43,6 +46,19 @@ class BaseAgent:
             )
         return self._client
 
+    def _resolve_system_prompt(self) -> str:
+        """Return the system prompt in the current language.
+
+        Defaults to English. Set APPFORGE_LANG=zh to use the Chinese version
+        if the agent provides SYSTEM_PROMPT_CN.
+        """
+        if LANG == "zh":
+            module = sys.modules.get(self.__class__.__module__)
+            cn = getattr(module, "SYSTEM_PROMPT_CN", None)
+            if cn:
+                return cn
+        return self.system_prompt
+
     def _build_messages(self, user_input: str) -> list[dict]:
         return [
             {"role": "user", "content": user_input},
@@ -57,7 +73,7 @@ class BaseAgent:
     def run(self, user_input: str, **kwargs) -> str:
         cfg = self._merge_config(kwargs)
         messages = [
-            {"role": "system", "content": self.system_prompt},
+            {"role": "system", "content": self._resolve_system_prompt()},
         ] + self._build_messages(user_input)
         resp = self.client.chat.completions.create(
             model=cfg["model"],
@@ -72,7 +88,7 @@ class BaseAgent:
     def run_stream(self, user_input: str, **kwargs) -> Iterator[str]:
         cfg = self._merge_config(kwargs)
         messages = [
-            {"role": "system", "content": self.system_prompt},
+            {"role": "system", "content": self._resolve_system_prompt()},
         ] + self._build_messages(user_input)
         stream = self.client.chat.completions.create(
             model=cfg["model"],
