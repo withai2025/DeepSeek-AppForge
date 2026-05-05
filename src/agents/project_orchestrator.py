@@ -110,7 +110,8 @@ PRD > 技术方案 > 编码规范 > Schema > API 契约
 
 class ProjectOrchestrator(BaseAgent):
     name = "project-orchestrator"
-    description = "全局编码任务控制器 — 管理从产品构想到完整可运行 APP 的全生命周期，调度 13 个子 Agent 的串并行执行"
+    description = "Project Orchestrator — Full-lifecycle controller scheduling 13 sub-agents in serial/parallel, from product concept to complete runnable app"
+    description_cn = "全局编码任务控制器 — 管理从产品构想到完整可运行 APP 的全生命周期，调度 13 个子 Agent 的串并行执行"
     system_prompt = SYSTEM_PROMPT
     config = AgentConfig(
         temperature=0.2,

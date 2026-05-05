@@ -1398,7 +1398,8 @@ Then：[期望结果]
 
 class CodingStandards(BaseAgent):
     name = "coding-standards"
-    description = "编码规范专家 — 从 PRD+技术方案生成 CODING_STANDARDS.md，含 DO/DON'T 示例与 Cursor Prompt 模板"
+    description = "Coding Standards Expert — Generate CODING_STANDARDS.md from PRD + Tech Architecture, with DO/DON'T examples and Cursor Prompt templates"
+    description_cn = "编码规范专家 — 从 PRD+技术方案生成 CODING_STANDARDS.md，含 DO/DON'T 示例与 Cursor Prompt 模板"
     system_prompt = SYSTEM_PROMPT
     config = AgentConfig(
         temperature=0.1,

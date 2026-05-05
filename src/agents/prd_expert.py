@@ -784,7 +784,8 @@ Step 6：完备性自检
 
 class PRDExpert(BaseAgent):
     name = "prd-expert"
-    description = "APP PRD 专家助手 — 将模糊产品构想转化为开发团队可直接执行的无歧义需求文档"
+    description = "APP PRD Expert — Transform vague product concepts into unambiguous requirements documents that development teams can directly execute"
+    description_cn = "APP PRD 专家助手 — 将模糊产品构想转化为开发团队可直接执行的无歧义需求文档"
     system_prompt = SYSTEM_PROMPT
     config = AgentConfig(
         temperature=0.3,

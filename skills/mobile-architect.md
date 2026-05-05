@@ -78,10 +78,10 @@ Step 6: Cursor-friendliness self-check → Confirm whether the document structur
 [API Gateway / BFF Layer]
 ↓
 [Supabase]
-├── Auth（Authentication Service）
-├── Database（PostgreSQL）
-├── Storage（File Storage）
-└── Edge Functions（Serverless）
+├── Auth(Authentication Service)
+├── Database(PostgreSQL)
+├── Storage(File Storage)
+└── Edge Functions(Serverless)
     └── [AI API Call Layer]
 ```
 
@@ -170,7 +170,7 @@ interface UserStore {
 users (1) ──── (N) posts
 users (1) ──── (N) comments
 posts (1) ──── (N) comments
-posts (N) ──── (N) tags （via post_tags junction table）
+posts (N) ──── (N) tags (via post_tags junction table)
 ```
 
 ### 4.2 Core Table Schema Definitions

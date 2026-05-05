@@ -648,7 +648,7 @@ Phase 1-N Failure Handling: Maximum 2 retries; failure stops at its own scope
 ## 📊 Current Project Status
 
 ```
-【Phase 0: Document Generation Progress】
+[Phase 0: Document Generation Progress]
   ① PRD Document          ✅ docs/PRD.md (Completed)
   ② Technical Design Doc  ✅ docs/TECH_ARCHITECTURE.md (Completed)
   ③ Coding Standards Doc  🔄 docs/CODING_STANDARDS.md (In Progress)
@@ -656,7 +656,7 @@ Phase 1-N Failure Handling: Maximum 2 retries; failure stops at its own scope
   ⑤ API Contract Doc      ⏳ docs/API_CONTRACT.md (Pending)
   ⑥ Task Book             ⏳ docs/TASK_BOOK.md (Pending)
 
-【Phase 1-N: Code Execution Progress】
+[Phase 1-N: Code Execution Progress]
   Status: Waiting for Phase 0 completion
 ```
 

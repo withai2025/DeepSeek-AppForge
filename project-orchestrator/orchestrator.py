@@ -44,10 +44,10 @@ def _get_client():
 
 MAX_RETRIES = 2
 
-# Orchestrator 系统提示词（从外部文件加载）
+# Orchestrator system prompt (loaded from external file)
 ORCHESTRATOR_SYSTEM = Path("agents/orchestrator.md").read_text(encoding="utf-8")
 
-# Orchestrator 可用的 Tool 定义（DeepSeek/OpenAI Function Calling 格式）
+# Tool definitions available to Orchestrator (DeepSeek/OpenAI Function Calling format)
 ORCHESTRATOR_TOOLS = [
     {
         "type": "function",
@@ -131,7 +131,7 @@ ORCHESTRATOR_TOOLS = [
 
 
 def execute_tool(tool_name: str, tool_input: dict, state: dict) -> tuple[str, dict]:
-    """执行 Orchestrator 的 Tool 调用，返回 (结果字符串, 更新后的state)"""
+    """Execute Orchestrator Tool call, return (result string, updated state)"""
 
     if tool_name == "read_project_state":
         return json.dumps(state, ensure_ascii=False, indent=2), state
@@ -197,7 +197,7 @@ def execute_tool(tool_name: str, tool_input: dict, state: dict) -> tuple[str, di
 
 
 def _serialize_tool_calls(tool_calls) -> list[dict]:
-    """将 OpenAI tool_calls 对象序列化为可追加到 messages 的 dict 列表"""
+    """Serialize OpenAI tool_calls objects into a list of dicts appendable to messages"""
     result = []
     for tc in tool_calls:
         result.append({
@@ -226,7 +226,7 @@ def run_orchestrator_turn(user_input: str, state: dict) -> dict:
 
     console.print("[dim]🧠 Orchestrator analyzing...[/dim]")
 
-    # Orchestrator 的 Function Calling 循环
+    # Orchestrator Function Calling loop
     while True:
         response = _get_client().chat.completions.create(
             model=ORCHESTRATOR_MODEL,
@@ -238,15 +238,15 @@ def run_orchestrator_turn(user_input: str, state: dict) -> dict:
 
         msg = response.choices[0].message
 
-        # 展示文本输出
+        # Display text output
         if msg.content:
             console.print(Panel(msg.content, border_style="blue", title="📊 Orchestrator"))
 
-        # 没有 Tool 调用则退出循环
+        # Exit loop if no Tool calls
         if response.choices[0].finish_reason != "tool_calls":
             break
 
-        # 处理所有 Tool 调用
+        # Process all Tool calls
         for tc in msg.tool_calls:
             console.print(f"[dim]⚙️  Calling tool: {tc.function.name}[/dim]")
             tool_input = json.loads(tc.function.arguments)
@@ -258,7 +258,7 @@ def run_orchestrator_turn(user_input: str, state: dict) -> dict:
                 "content": result_text,
             })
 
-        # 追加 assistant 消息（包含 tool_calls）
+        # Append assistant message (includes tool_calls)
         messages.append({
             "role": "assistant",
             "content": msg.content,

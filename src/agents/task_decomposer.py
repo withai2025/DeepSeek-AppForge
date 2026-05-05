@@ -772,7 +772,8 @@ Step 3：如果任何操作都不行，关闭终端，重新运行 npx expo star
 
 class TaskDecomposer(BaseAgent):
     name = "task-decomposer"
-    description = "编码任务拆分专家 — 将全套文档拆解为分阶段编码任务书，含依赖图/Claude Code指令/验收标准/Mock策略"
+    description = "Task Decomposer — Break down all planning documents into a phased coding task book: dependency graphs, Claude Code instructions, acceptance criteria, mock strategies"
+    description_cn = "编码任务拆分专家 — 将全套文档拆解为分阶段编码任务书，含依赖图/Claude Code指令/验收标准/Mock策略"
     system_prompt = SYSTEM_PROMPT
     config = AgentConfig(
         temperature=0.2,

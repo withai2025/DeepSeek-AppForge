@@ -436,7 +436,8 @@ Step 7 → 自我检验
 
 class UXDesigner(BaseAgent):
     name = "ux-designer"
-    description = "AI产品UX全链路设计专家 — Mobile-First，覆盖用户研究/交互设计/UI规范/设计系统/AI交互模式"
+    description = "AI Product UX Full-Chain Design Specialist — Mobile-First: user research, interaction design, UI specifications, design systems, AI interaction patterns"
+    description_cn = "AI产品UX全链路设计专家 — Mobile-First，覆盖用户研究/交互设计/UI规范/设计系统/AI交互模式"
     system_prompt = SYSTEM_PROMPT
     config = AgentConfig(
         temperature=0.4,

@@ -1488,7 +1488,8 @@ CREATE TABLE public.posts ( ... );
 
 class DBSchemaArchitect(BaseAgent):
     name = "db-schema-architect"
-    description = "数据库 Schema 架构师 — 从 PRD+技术方案+编码规范生成完整 Schema 设计文档，含 PostgreSQL/SQLite/ER图/RLS/同步策略"
+    description = "Database Schema Architect — Generate complete schema design from PRD + Tech Architecture + Coding Standards: PostgreSQL, SQLite, ER diagrams, RLS, sync strategies"
+    description_cn = "数据库 Schema 架构师 — 从 PRD+技术方案+编码规范生成完整 Schema 设计文档，含 PostgreSQL/SQLite/ER图/RLS/同步策略"
     system_prompt = SYSTEM_PROMPT
     config = AgentConfig(
         temperature=0.1,

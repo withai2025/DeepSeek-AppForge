@@ -44,7 +44,7 @@ YOU SAY:                          APPFORGE DELIVERS:
 ## 🗺️ Pipeline at a Glance
 
 <p align="center">
-  <img src="docs/pipeline-flowchart-en.svg" alt="AppForge Pipeline" width="100%">
+  <img src="docs/pipeline-flowchart.svg" alt="AppForge Pipeline" width="100%">
 </p>
 
 ---
@@ -392,7 +392,7 @@ User: "I want to build a running tracker app..."
 
 ```bash
 git clone https://github.com/withAIx/DeepSeek-AppForge.git
-cd AppForge/project-orchestrator
+cd DeepSeek-AppForge/project-orchestrator
 
 pip install -r requirements.txt
 cp .env.example .env   # add your DEEPSEEK_API_KEY

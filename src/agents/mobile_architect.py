@@ -836,7 +836,8 @@ npx expo start
 
 class MobileArchitect(BaseAgent):
     name = "mobile-architect"
-    description = "移动端技术架构师 — 从 PRD 到可执行技术方案，涵盖技术选型/数据库/API/AI集成/MVP路径"
+    description = "Mobile Tech Architect — From PRD to executable technical plan: tech stack selection, database, API, AI integration, MVP roadmap"
+    description_cn = "移动端技术架构师 — 从 PRD 到可执行技术方案，涵盖技术选型/数据库/API/AI集成/MVP路径"
     system_prompt = SYSTEM_PROMPT
     config = AgentConfig(
         temperature=0.2,

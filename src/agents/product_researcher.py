@@ -272,7 +272,8 @@ SYSTEM_PROMPT_CN = """
 
 class ProductResearcher(BaseAgent):
     name = "product-researcher"
-    description = "AI产品调研专家 — 1小时内完成竞品快调研，输出机会点/差异化/功能对标矩阵"
+    description = "AI Product Research Specialist — Complete competitor quick research within 1 hour; output opportunity gaps, differentiators, and feature comparison matrices"
+    description_cn = "AI产品调研专家 — 1小时内完成竞品快调研，输出机会点/差异化/功能对标矩阵"
     system_prompt = SYSTEM_PROMPT
     config = AgentConfig(
         temperature=0.3,

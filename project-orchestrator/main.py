@@ -40,7 +40,7 @@ def main():
         )
     )
 
-    # 首次启动自动打印状态
+    # Auto-print status on first launch
     orch.print_status()
 
     while True:

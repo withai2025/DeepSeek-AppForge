@@ -18,8 +18,9 @@ pip install -e ".[dev]"
 Copy `.env.example` to `.env` and set your API key:
 
 ```bash
+cd project-orchestrator
 cp .env.example .env
-# Edit .env — add your DEEPSEEK_API_KEY or ANTHROPIC_API_KEY
+# Edit .env — add your DEEPSEEK_API_KEY
 ```
 
 ## Project Structure
@@ -56,7 +57,7 @@ Use the Feature Request template. Describe:
 
 - Python 3.11+, type hints encouraged
 - Keep diffs minimal — prefer editing existing files over creating new ones
-- Agent system prompts are in Chinese; code comments may be in English or Chinese
+- Agent system prompts are in English by default; Chinese versions available with `_cn.md` suffix
 - No half-finished implementations
 
 ## Testing

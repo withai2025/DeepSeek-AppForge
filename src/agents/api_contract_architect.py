@@ -1812,7 +1812,8 @@ export const PostService = {
 
 class APIContractArchitect(BaseAgent):
     name = "api-contract-architect"
-    description = "API 接口契约架构师 — 从 PRD+技术方案+Schema+编码规范生成完整 API 契约文档，含 TypeScript 类型/S请求函数模板"
+    description = "API Contract Architect — Generate complete API contract from PRD + Tech Architecture + Schema + Coding Standards, with TypeScript types and request function templates"
+    description_cn = "API 接口契约架构师 — 从 PRD+技术方案+Schema+编码规范生成完整 API 契约文档，含 TypeScript 类型/S请求函数模板"
     system_prompt = SYSTEM_PROMPT
     config = AgentConfig(
         temperature=0.15,

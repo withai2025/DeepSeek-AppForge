@@ -1,7 +1,7 @@
 [project]
 name = "deepseek-appforge"
 version = "0.1.0"
-description = "A collection of well-crafted AI agents powered by DeepSeek V4, callable from code or as Claude Code Skills."
+description = "A collection of well-crafted AI agents powered by DeepSeek V4, callable from code or as AI agent skills."
 requires-python = ">=3.11"
 dependencies = [
     "openai>=1.0.0",

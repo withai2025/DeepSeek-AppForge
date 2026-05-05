@@ -278,7 +278,8 @@ SYSTEM_PROMPT_CN = """
 
 class PromptEngineer(BaseAgent):
     name = "prompt-engineer"
-    description = "提示词工程专家 — 根据需求设计高质量结构化提示词，支持 Thinking 模式推理链路设计"
+    description = "Prompt Engineering Specialist — Design high-quality structured prompts with thinking-mode reasoning chain support"
+    description_cn = "提示词工程专家 — 根据需求设计高质量结构化提示词，支持 Thinking 模式推理链路设计"
     system_prompt = SYSTEM_PROMPT
     config = AgentConfig(
         temperature=0.4,

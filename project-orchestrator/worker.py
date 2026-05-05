@@ -25,7 +25,7 @@ def _get_client():
 
 
 def load_agent_prompt(agent_name: str) -> str:
-    """加载子 Agent 的系统提示词"""
+    """Load sub-agent system prompt"""
     config = AGENT_REGISTRY[agent_name]
     prompt_path = Path(config["prompt_file"])
     if not prompt_path.exists():
@@ -64,14 +64,14 @@ def run_worker(
     extra_context: str = "",
     stream: bool = True,
 ) -> str:
-    """执行子 Agent，返回完整输出内容"""
+    """Execute sub-agent and return complete output"""
     config = AGENT_REGISTRY[agent_name]
     system_prompt = load_agent_prompt(agent_name)
 
-    # 组装上下文文档
+    # Assemble context documents
     context = load_context_docs(config.get("requires_docs", []))
     if extra_context:
-        context += f"\n\n---\n# 额外上下文\n\n{extra_context}"
+        context += f"\n\n---\n# Extra Context\n\n{extra_context}"
 
     user_message = f"""## Task Requirements
 {task_description}
@@ -108,7 +108,7 @@ def run_worker(
             if delta.content:
                 print(delta.content, end="", flush=True)
                 full_response += delta.content
-        print()  # 换行
+        print()  # newline
     else:
         response = _get_client().chat.completions.create(
             model=config["model"],
