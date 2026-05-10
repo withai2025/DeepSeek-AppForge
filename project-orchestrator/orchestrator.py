@@ -246,7 +246,14 @@ def run_orchestrator_turn(user_input: str, state: dict) -> dict:
         if response.choices[0].finish_reason != "tool_calls":
             break
 
-        # Process all Tool calls
+        # Append assistant message (with tool_calls) FIRST — required by API order
+        messages.append({
+            "role": "assistant",
+            "content": msg.content,
+            "tool_calls": _serialize_tool_calls(msg.tool_calls),
+        })
+
+        # Then append tool result messages
         for tc in msg.tool_calls:
             console.print(f"[dim]⚙️  Calling tool: {tc.function.name}[/dim]")
             tool_input = json.loads(tc.function.arguments)
@@ -257,13 +264,6 @@ def run_orchestrator_turn(user_input: str, state: dict) -> dict:
                 "tool_call_id": tc.id,
                 "content": result_text,
             })
-
-        # Append assistant message (includes tool_calls)
-        messages.append({
-            "role": "assistant",
-            "content": msg.content,
-            "tool_calls": _serialize_tool_calls(msg.tool_calls),
-        })
 
     return state
 
