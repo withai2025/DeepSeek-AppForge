@@ -146,8 +146,8 @@ TASK_BOOK.md
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/withAIx/agents.git
-cd agents/project-orchestrator
+git clone https://github.com/withAIx/DeepSeek-AppForge.git
+cd DeepSeek-AppForge/project-orchestrator
 ```
 
 ### 2. 安装依赖
@@ -156,30 +156,13 @@ cd agents/project-orchestrator
 pip install -r requirements.txt
 ```
 
-### 3. 配置 API Key
-
-```bash
-cp .env.example .env
-# 编辑 .env，填入你的 DEEPSEEK_API_KEY
-```
-
-`.env` 内容：
-
-```env
-DEEPSEEK_API_KEY=sk-ant-...
-ORCHESTRATOR_MODEL=deepseek-v4-pro    # 总调度器模型
-WORKER_MODEL_HEAVY=deepseek-v4-pro    # 文档生成 Agent 模型
-WORKER_MODEL_LIGHT=deepseek-v4-flash   # 编码执行 Agent 模型
-PROJECT_NAME=my_app                    # 项目名称
-```
-
-### 4. 启动系统
+### 3. 启动系统
 
 ```bash
 python main.py
 ```
 
-### 5. 开始你的第一个项目
+### 4. 开始你的第一个项目
 
 ```
 > 我想做一个跑步打卡 APP，用户可以记录跑步路线、配速、消耗卡路里，还能加好友互相PK

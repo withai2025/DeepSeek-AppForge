@@ -397,7 +397,6 @@ git clone https://github.com/withAIx/DeepSeek-AppForge.git
 cd DeepSeek-AppForge/project-orchestrator
 
 pip install -r requirements.txt
-cp .env.example .env   # 编辑填入 DEEPSEEK_API_KEY
 
 python main.py
 ```

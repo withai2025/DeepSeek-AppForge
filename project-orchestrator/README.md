@@ -163,30 +163,13 @@ cd DeepSeek-AppForge/project-orchestrator
 pip install -r requirements.txt
 ```
 
-### 3. Configure API key
-
-```bash
-cp .env.example .env
-# Edit .env and fill in your DEEPSEEK_API_KEY
-```
-
-`.env` content:
-
-```env
-DEEPSEEK_API_KEY=sk-ant-...
-ORCHESTRATOR_MODEL=deepseek-v4-pro    # Orchestrator model
-WORKER_MODEL_HEAVY=deepseek-v4-pro    # Document generation agent model
-WORKER_MODEL_LIGHT=deepseek-v4-flash   # Code execution agent model
-PROJECT_NAME=my_app                    # Project name
-```
-
-### 4. Launch the system
+### 3. Launch the system
 
 ```bash
 python main.py
 ```
 
-### 5. Start your first project
+### 4. Start your first project
 
 ```
 > I want to build a running tracker app where users can log routes, pace, calories burned, and compete with friends
@@ -203,16 +186,48 @@ Orchestrator will automatically:
 
 ## 📊 Interactive Demo
 
+**First launch** — no `.env` file needed. The system introduces itself and guides you through setup:
+
 ```text
 $ python main.py
 
-🚀 Project Orchestrator v2.0
-Orchestrator-Workers Full-Lifecycle APP Development Orchestration System
+╭──────────────────────────────────────────╮
+│ 🚀 Project Orchestrator v2.0             │
+│ Orchestrator-Workers — full lifecycle    │
+│ APP development system                   │
+│                                          │
+│ Powered by DeepSeek V4                   │
+│ 13 specialized AI agents turn your app   │
+│ idea into a complete, runnable app.      │
+│                                          │
+│ Phase 0: 6 planning agents design every  │
+│          detail of your app              │
+│ Phase 1-N: 6 coding agents build,        │
+│            connect, verify, and fix      │
+│                                          │
+│ Type help to see available commands.     │
+╰──────────────────────────────────────────╯
 
-Commands:
-  status  → View current development progress
-  exit    → Exit the system
-  anything else → Send to Orchestrator for analysis and scheduling
+╭──────────────────────────────────────────╮
+│ ⚡ This project needs a DeepSeek API     │
+│ key to work.                             │
+│                                          │
+│ Security note:                           │
+│   • Your key is stored only in the local │
+│     .env file on your machine            │
+│   • The .env file is gitignored — it     │
+│     will never be committed or pushed    │
+│   • The key is sent only to              │
+│     api.deepseek.com — nowhere else      │
+│   • No telemetry, no third-party servers │
+│   • You can inspect every line of source │
+│     code to verify                       │
+╰──────────────────────────────────────────╯
+
+To get your key: https://platform.deepseek.com/api_keys
+
+Enter your DeepSeek API key (or 'q' to quit): sk-xxx...
+✅ API key saved to .env (local only, never uploaded)
 
 ┌───────────────── 📊 Project Development Progress ─────────────────┐
 │ Agent              │ Document                    │ Status         │
