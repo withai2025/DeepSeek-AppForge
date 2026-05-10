@@ -157,9 +157,11 @@ git clone https://github.com/withAIx/DeepSeek-AppForge.git
 cd DeepSeek-AppForge/project-orchestrator
 ```
 
-### 2. Install dependencies
+### 2. Create virtual environment & install dependencies
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate     # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
@@ -168,6 +170,10 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+
+On first launch, paste your [DeepSeek API key](https://platform.deepseek.com/api_keys) when prompted. The key is saved to `.env` (gitignored, never leaves your machine).
+
+> **Or just run `bash run.sh`** — it handles venv creation and dependency install automatically.
 
 ### 4. Start your first project
 

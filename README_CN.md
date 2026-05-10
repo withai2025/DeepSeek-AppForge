@@ -393,13 +393,22 @@ Orchestrator 通过 DeepSeek **Function Calling** 实现全自动调度决策，
 ### 完整流水线（推荐）
 
 ```bash
+# 1. 克隆仓库
 git clone https://github.com/withAIx/DeepSeek-AppForge.git
 cd DeepSeek-AppForge/project-orchestrator
 
+# 2. 创建虚拟环境并安装依赖
+python3 -m venv .venv
+source .venv/bin/activate     # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
+# 3. 启动
 python main.py
 ```
+
+首次启动时会提示粘贴 [DeepSeek API Key](https://platform.deepseek.com/api_keys)，密钥保存到 `.env`（gitignored，不上传）。
+
+> **或直接执行 `bash run.sh`** — 自动创建虚拟环境、安装依赖并启动。
 
 ```text
 > 我想做一个卡路里追踪APP，可以扫码识别食物、记录每餐摄入...

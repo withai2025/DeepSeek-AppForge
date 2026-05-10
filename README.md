@@ -391,13 +391,22 @@ User: "I want to build a running tracker app..."
 ### The Full Pipeline (Recommended)
 
 ```bash
+# 1. Clone the repo
 git clone https://github.com/withAIx/DeepSeek-AppForge.git
 cd DeepSeek-AppForge/project-orchestrator
 
+# 2. Create virtual environment & install dependencies
+python3 -m venv .venv
+source .venv/bin/activate     # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
+# 3. Launch
 python main.py
 ```
+
+On first launch, paste your [DeepSeek API key](https://platform.deepseek.com/api_keys) when prompted. It's saved to `.env` (gitignored, never leaves your machine).
+
+> **Or just run `bash run.sh`** — it handles venv creation and dependency install automatically.
 
 ```text
 > I want a calorie-tracking app with barcode scanning and meal logging...
