@@ -246,12 +246,17 @@ def run_orchestrator_turn(user_input: str, state: dict) -> dict:
         if response.choices[0].finish_reason != "tool_calls":
             break
 
-        # Append assistant message (with tool_calls) FIRST — required by API order
-        messages.append({
+        # Append assistant message (with tool_calls) FIRST — required by API order.
+        # DeepSeek thinking mode requires reasoning_content to be passed back.
+        assistant_msg = {
             "role": "assistant",
             "content": msg.content,
             "tool_calls": _serialize_tool_calls(msg.tool_calls),
-        })
+        }
+        reasoning = getattr(msg, "reasoning_content", None)
+        if reasoning:
+            assistant_msg["reasoning_content"] = reasoning
+        messages.append(assistant_msg)
 
         # Then append tool result messages
         for tc in msg.tool_calls:
