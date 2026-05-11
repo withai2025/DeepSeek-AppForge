@@ -2,9 +2,13 @@
 
 > **从产品构想到完整可运行 APP 的全生命周期 AI 编排系统**
 
+[![GitHub stars](https://img.shields.io/github/stars/withAIx/DeepSeek-AppForge?style=social)](https://github.com/withAIx/DeepSeek-AppForge/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/withAIx/DeepSeek-AppForge)](https://github.com/withAIx/DeepSeek-AppForge/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/withAIx/DeepSeek-AppForge)](https://github.com/withAIx/DeepSeek-AppForge/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/withAIx/DeepSeek-AppForge)](https://github.com/withAIx/DeepSeek-AppForge/pulls)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
-[![DeepSeek SDK](https://img.shields.io/badge/DeepSeek%20SDK-0.40+-green.svg)](https://github.com/openais/openai-sdk-python)
+[![DeepSeek SDK](https://img.shields.io/badge/DeepSeek%20SDK-0.40+-green.svg)](https://github.com/openai/openai-python)
 
 ---
 

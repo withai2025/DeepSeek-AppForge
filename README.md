@@ -12,10 +12,12 @@
 
 <p align="center">
   <a href="https://github.com/withAIx/DeepSeek-AppForge/stargazers"><img src="https://img.shields.io/github/stars/withAIx/DeepSeek-AppForge?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/withAIx/DeepSeek-AppForge/network/members"><img src="https://img.shields.io/github/forks/withAIx/DeepSeek-AppForge" alt="GitHub forks"></a>
+  <a href="https://github.com/withAIx/DeepSeek-AppForge/issues"><img src="https://img.shields.io/github/issues/withAIx/DeepSeek-AppForge" alt="GitHub issues"></a>
+  <a href="https://github.com/withAIx/DeepSeek-AppForge/pulls"><img src="https://img.shields.io/github/issues-pr/withAIx/DeepSeek-AppForge" alt="GitHub pull requests"></a>
   <a href="https://github.com/withAIx/DeepSeek-AppForge/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11+-blue.svg" alt="Python 3.11+"></a>
   <a href="https://github.com/openai/openai-python"><img src="https://img.shields.io/badge/OpenAI%20SDK-1.0+-green.svg" alt="OpenAI SDK (DeepSeek compatible)"></a>
-  <a href="https://github.com/withAIx/DeepSeek-AppForge/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
 </p>
 
 ---
